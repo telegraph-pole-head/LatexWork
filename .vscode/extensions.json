@@ -1,7 +1,7 @@
 {
 	"recommendations": [
 		"James-Yu.latex-workshop",
-		"GitHub.copilot",
+		//"GitHub.copilot",
 		// Remove the line below if you do not want Live-Collaboration Feature
 		"ms-vsliveshare.vsliveshare",
 		// Uncomment the line below if you do not want LanguageTool Support

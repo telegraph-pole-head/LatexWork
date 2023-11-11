@@ -1,29 +1,291 @@
-% This is a simple sample document.  For more complicated documents take a look in the exercise tab. Note that everything that comes after a % symbol is treated as comment and ignored when the code is compiled.
+\documentclass[12pt, a4paper, oneside]{article}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs,color,siunitx}
 
-\documentclass{article} % \documentclass{} is the first command in any LaTeX code.  It is used to define what kind of document you are creating such as an article or a book, and begins the document preamble
+\begin{document}
 
-\usepackage{amsmath} % \usepackage is a command that allows you to add functionality to your LaTeX code
+%\maketitle
+\begin{center}
+  \rule{\textwidth}{1pt}\par
+  \vspace{5mm}
+  {\large\scshape UM-SJTU Joint Institute}\\[\baselineskip]
+  {\large\scshape Physics Laboratory}\\
+  (Vp241)
+  \rule{\textwidth}{1pt}\par
+  \vspace{4cm}
+  {\large\scshape Laboratory Report}\\[\baselineskip]
+  {\large\scshape Excercise 5}\\[\baselineskip]
+  {\large\scshape RC, RL, and RLC Circuit
+  }\\[\baselineskip]
+\end{center}
+\vspace{7cm}
 
-\title{Simple Sample} % Sets article title
-\author{My Name} % Sets authors name
-\date{\today} % Sets date for date compiled
+\begin{tabular}{lll}
+  Name: 			Zhiyuan Ning & ID:522370910079 & Group:17 \\
+  Date: {\today}        &                 &          \\
+\end{tabular}
 
-% The preamble ends with the command \begin{document}
-\begin{document} % All begin commands must be paired with an end command somewhere
-\maketitle % creates title using information in preamble (title, author, date)
 
-\section{Hello World!} % creates a section
+\rightline{\footnotesize[rev4.1]}
+\pagebreak
 
-\textbf{Hello World!} Today I am learning \LaTeX. %notice how the command will end at the first non-alphabet charecter such as the . after \LaTeX
-\LaTeX{} is a great program for writing math. I can write in line math such as $a^2+b^2=c^2$ %$ tells LaTexX to compile as math
-. I can also give equations their own space:
-\begin{equation} % Creates an equation environment and is compiled as math
-  \gamma^2+\theta^2=\omega^2
+\section{Introduction}
+The objective of the experiment is to investigate the phenomenon of the dynamic processes in RC, RL, and RLC series circuits and meanwhile examine the relationship between features ranging from half-life period to resonant behavior based on the measured data.
+
+The model of the experiment mainly consists of three parts: RC, RL, and RLC series circuits (stable and resonant), including exponential function and damping oscillation.
+
+Firstly, for RC series circuits: for the process of charging:
+\begin{equation}
+  RC \dot U_C +  U_C = \epsilon
 \end{equation}
-If I do not leave any blank lines \LaTeX{} will continue  this text without making it into a new paragraph.  Notice how there was no indentation in the text after equation (1).
-Also notice how even though I hit enter after that sentence and here $\downarrow$
-\LaTeX{} formats the sentence without any break.  Also   look  how      it   doesn't     matter          how    many  spaces     I put     between       my    words.
+whose solution is:
+\begin{equation}
+  U_C = \epsilon(1-e^{-\frac{t}{RC}})
+\end{equation}
+and for the process of discharging:
+\begin{equation}
+  RC \dot U_C +  U_C = 0
+\end{equation}
+\begin{equation}
+  U_C = \epsilon e^{-\frac{t}{RC}}
+\end{equation}
+So the volt of the resister R $U_R$ is respectively:
+\begin{equation}
+  U_R = \pm \epsilon e^{-\frac{t}{RC}}
+\end{equation}
 
-For a new essay I can leave a blank space in my code.
+Secondly, similarly for RL series circuits:
+\begin{equation}
+  L \dot I + IR = \epsilon
+\end{equation}
+\begin{equation}
+  I = \frac{\epsilon}{R}(1-e^{-\frac{Rt}{L}})
+\end{equation}
+\begin{equation}
+  L \dot I + IR = 0
+\end{equation}
+\begin{equation}
+  I = -\frac{\epsilon}{R}e^{-\frac{Rt}{L}}
+\end{equation}
+So the volt of the resister R, $U_R$ is respectively:
+\begin{equation}
+  U_R =IR=\pm \epsilon e^{-\frac{Rt}{L}}
+\end{equation}
 
-\end{document} % This is the end of the document
+Thirdly, for RCL series circuits: when connected with square waves:
+\begin{equation}
+  LC \ddot U_C + RC\dot U_C +  U_C = \epsilon
+\end{equation}
+let $\beta = \frac{R}{2L}$, $\omega_0 = \frac{1}{\sqrt{LC}}$, $\omega = \sqrt{|\omega^2-\beta^2|}$ then taking the initial value, solution is:
+\begin{equation}
+U_C=\begin{cases}
+	\epsilon (1-e^{-\beta t}(cos{\omega t} + \frac{\beta}{\omega}sin{\omega t}) \quad  , \omega^2-\beta^2<0\\
+	\epsilon (1-(1+\beta t)e^{-\beta t}) \quad , \omega^2-\beta^2=0\\
+	\epsilon (1-\frac{1}{2\omega}e^{-\beta t}[(\beta+\omega)e^{\omega t}-(\beta-\omega)e^{-\omega t}]) \quad , \omega^2-\beta^2>0\\
+	\end{cases}
+\end{equation}
+when connected with sinuous waves:
+\begin{equation}
+  LC \ddot U_C + RC\dot U_C +  U_C = u\cos{\omega_d t}
+\end{equation}
+As forced oscillation, the resonant frequency is:
+\begin{equation}
+  \omega_0 = \frac{1}{\sqrt{LC}}
+\end{equation}
+\begin{equation}
+  f_0 = \frac{1}{2\pi\sqrt{LC}}
+\end{equation}
+And the phase difference between the current and the voltage in the circuit is :
+\begin{equation}
+  \phi = \arctan{(\frac{\omega_d L-\frac{1}{\omega_d C}}{R})}
+\end{equation}
+The quality factor of the resonant circuit is:
+\begin{equation}
+  Q=\frac{\omega_0L}{R}=\frac{1}{\omega_0RC}
+\end{equation}
+
+
+\section{Experimental setup}
+
+According to the lab manual, the general equipment of the experiment mainly consists of a signal generator, an oscilloscope, a digital meter, a wiring board and the circuit elements(resistors, capacitors and inductors)
+
+The Oscilloscope used in the experiment is comparatively old, and the reading is slightly varying in time, so the measurement of the half-life period and $U_R$ might not be accurate.
+
+
+\section{Measurements}
+
+\subsection{Stable session(RC, RL, and RLC)}
+\label{sec_measurement}
+
+The half-life period and the parameters of the elements(resistance, capacitance and inductance) are measured and the obtained data for RC, RL, and RLC series circuits is presented in Table\ref{tb_measurement1}, Table \ref{tb_measurement2}, and Table\ref{tb_measurement3} respectively.
+
+\begin{table*}[!ht]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $R 99.65 [\Omega]\pm 0.005[\Omega]$ & $f 1000.000 [Hz]\pm 0.001[Hz]$ & $\epsilon 4.16 [V]\pm 0.08[V]$\\ \hline
+    $C 0.454 [\mu F]\pm 0.0005[\mu F]$ & $T_{1/2} 36 [\mu s]\pm 2[\mu s]$&\\ \hline
+  \end{tabular}
+  \caption{Data for the measurement of RC series circuit.}
+  \label{tb_measurement1}
+\end{table*}
+
+\begin{table*}[!ht]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $R 99.65 [\Omega]\pm 0.005[\Omega]$ & $f 1000.000 [Hz]\pm 0.001[Hz]$ & $\epsilon 4.16 [V]\pm 0.08[V]$\\ \hline
+    $L 0.01 [H]\pm 0[H]$ & $T_{1/2} 72 [\mu s]\pm 2[\mu s]$&\\ \hline
+  \end{tabular}
+  \caption{Data for the measurement of RL series circuit.}
+  \label{tb_measurement2}
+\end{table*}
+
+\begin{table*}[!ht]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $L 0.01 [H]\pm 0[H]$ & $C 99.8 [nF]\pm 0.05[nF]$ & $\epsilon 4.16 [V]\pm 0.08[V]$ \\ \hline
+    $f 1000.000 [Hz]\pm 0.001[Hz]$ & $\beta t = 1.68 $ & $T_{1/2} 70 [\mu s]\pm 2[\mu s]$\\ \hline
+  \end{tabular}
+  \caption{Data for the measurement of the critically damped RLC series circuit.}
+  \label{tb_measurement3}
+\end{table*}
+
+\subsection{Resonant RLC series circuit}
+\label{sec_measurement}
+
+Then $U_R$ w.r.t different driving frequency(the frequency of the input sinuous wave). The obtained data is presented in Table \ref{tb_measurement4} .
+
+\begin{table*}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        $R 99.65 [\Omega]\pm 0.005[\Omega]$ & $L 0.01 [H]\pm 0[H]$ & $C 0.454 [\mu F]\pm 0.0005[\mu F]$  \\ \hline
+        ~ &$f_0 2.3621 [kHz]\pm 0.1[Hz]$ & $\epsilon 4.16 [V]\pm 0.08[V]$ \\ \hline
+        ~ & $U_R [V]\pm 0.08[V]$ & $f [Hz]\pm 0.001[Hz]$ \\ \hline
+        1 & 2.16 & 1.400000 \\ \hline
+        2 & 2.4 & 1.500000 \\ \hline
+        3 & 2.64 & 1.600000 \\ \hline
+        4 & 2.88 & 1.700000 \\ \hline
+        5 & 3.12 & 1.800000 \\ \hline
+        6 & 3.36 & 1.900000 \\ \hline
+        7 & 3.52 & 2.000000 \\ \hline
+        8 & 3.68 & 2.100000 \\ \hline
+        9 & 3.76 & 2.200000 \\ \hline
+        10 & 3.84 & 2.300000 \\ \hline
+        11 & 3.84 & 2.400000 \\ \hline
+        12 & 3.76 & 2.500000 \\ \hline
+        13 & 3.68 & 2.600000 \\ \hline
+        14 & 3.6 & 2.700000 \\ \hline
+        15 & 3.44 & 2.800000 \\ \hline
+        16 & 3.36 & 2.900000 \\ \hline
+        17 & 3.12 & 300000 \\ \hline
+        18 & 3.04 & 3.100000 \\ \hline
+        19 & 2.96 & 3.200000 \\ \hline
+        20 & 2.8 & 3.300000 \\ \hline
+        21 & 2.64 & 3.400000 \\ \hline
+  \end{tabular}
+  \caption{Data for the measurement of the $U_R$ vs. f dependence for RLC resonant circuit.}
+  \label{tb_measurement4}
+\end{table*}
+
+
+\section{Results}
+
+The results of the experiment is calculated as follows:
+
+\subsection{Stable session(RC, RL, and RLC)}
+\label{sec_results}
+
+From the introduction, we can know that the theoretical value of the half-life period of the charging process of the RC series circuit is: 
+\[T_{1/2} = RC\ln{2} \approx 31.35874 \mu s\]
+which is close to (still a bit smaller than) the experimental value. The picture is:
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[scale=0.08]{f1.jpg}
+  \caption{the picture of the RC}
+\end{figure}
+
+From the introduction, we can know that the theoretical value of the half-life period of the charging process of the RL series circuit is: 
+\[T_{1/2} = \frac{L}{R}\ln{2} \approx 69.95582 \mu s\]
+which is close to (still a bit smaller than) the experimental value. The picture is:
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[scale=0.08]{f2.jpg}
+  \caption{the picture of the RL}
+\end{figure}
+
+From the introduction, we can know that the theoretical value of the half-life period of the charging process of the critical damped RLC series circuit is got by solving $(1+\beta t)e^{-\beta t}=1/2$:
+\[T_{1/2} \approx 63.20583 \mu s\]
+which is close to (still a bit smaller than) the experimental value(and will be discussed in the discussion section). The picture of three damping cases is:
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[scale=0.08]{f3.jpg}
+  \caption{the picture of the underdamped RCL}
+\end{figure}
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[scale=0.08]{f4.jpg}
+  \caption{the picture of the critically damped RCL}
+\end{figure}
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[scale=0.08]{f5.jpg}
+  \caption{the picture of the overdamped RCL} 
+\end{figure}
+
+\subsection{Resonant RLC series circuit}
+\label{sec_results}
+
+As is stated in the introduction part, the resonant frequency is calculated to be:
+\[f_0 = \frac{1}{2\pi\sqrt{LC}} \approx 2.3621 kHz\]
+The current I can be calculated with $I=U_R/R$.
+The phase difference can be calculated with $\phi = \arctan{(\frac{\omega_d L-\frac{1}{\omega_d C}}{R})}$
+Then the relationship between f and I is shown in the graphs below:
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[scale=0.7]{f6.png}
+  \caption{the graph of $I/I_m$ vs. $f/f_0$ } 
+\end{figure}
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[scale=0.7]{f7.png}
+  \caption{the graph of $\phi$ vs. $f/f_0$} 
+\end{figure}
+
+The Quality factor can be calculated with:
+\[Q=\frac{\omega_0L}{R}=\frac{1}{\omega_0RC}\approx1.489364\times10^{-3}\]
+
+\section{Conclusions and discussion}
+This experiment provide insight into the features of RC, RL, and RLC series circuits (half-life period, driven and damped oscillation, phase difference, resonant frequency and quality factor). In addition of learning the pattern and properties of the voltage changes in different circuits, the experiment also shows how the phase difference and amplitude varies with respect to the frequency of the sinuous wave.
+
+The fundamental source of inaccuracy of the method adopted is that while moving the cusors, I may have fogotten to keep the X1 fixed when moving X2 because of the different operation logic of different oscilloscope. So the overall measurement of the half-life period is bigger than expected.
+
+The precision of the measurements, can be further increased by adopting other method that measures the phase difference by machine to further examine the results deducted from calculation. Also, choosing more stable and percise oscilloscope helps.
+
+In real life, these circuits can be used in multiple aspects like Tuned circuits, Power factor correction, and signal processing
+
+
+
+\pagebreak
+\appendix
+\section{Datasheet}
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[scale=0.33]{d1.jpg}
+  \caption{}
+\end{figure}
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[scale=0.33]{d2.jpg}
+  \caption{}
+\end{figure}
+
+\end{document}
